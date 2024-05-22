@@ -1,8 +1,8 @@
 (ns bowling.core)
 
-(defn is-spare? [rolls] (= 10 (reduce + (take 2 rolls))))
+(defn spare? [rolls] (= 10 (reduce + (take 2 rolls))))
 
-(defn is-strike? [rolls] (= 10 (first rolls)))
+(defn strike? [rolls] (= 10 (first rolls)))
 
 (defn create-frame [rolls]
   (if (or (is-strike? rolls) (is-spare? rolls))
