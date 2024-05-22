@@ -3,7 +3,7 @@
             [bowling.core :refer :all]))
 
 (describe "bowling"
-  (describe "scoring"
+  (context "scoring"
       (it "Gutter game scores 0"
         (should= 0 (score-game (take 20 (repeat 0)))))
       (it "One pin per roll scores 20"
@@ -18,7 +18,7 @@
       (it "Spare in the last frame is extra turn"
           (should= 40 (score-game [1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 9 3])))
   )
-  (describe "-> frames"
+  (context "-> frames"
     (it "No rolls is no frames"
         (should= [] (->frames [])))
     (it "One roll result one frame"
