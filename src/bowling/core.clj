@@ -5,12 +5,12 @@
 (defn strike? [rolls] (= 10 (first rolls)))
 
 (defn create-frame [rolls]
-  (if (or (is-strike? rolls) (is-spare? rolls))
+  (if (or (strike? rolls) (spare? rolls))
     (take 3 rolls)
     (take 2 rolls)))
 
 (defn rest-rolls [rolls]
-  (if (is-strike? rolls)
+  (if (strike? rolls)
     (drop 1 rolls)
     (drop 2 rolls)))
 
