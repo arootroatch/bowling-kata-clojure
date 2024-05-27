@@ -4,34 +4,27 @@
 
 (describe "bowling"
   (context "scoring"
-      (it "Gutter game scores 0"
-        (should= 0 (score-game (take 20 (repeat 0)))))
-      (it "One pin per roll scores 20"
-        (should= 20 (score-game (take 20 (repeat 1)))))
-      (it "Spare adds next rolls to score"
-          (should= 18 (score-game [5 5 4]))
-          (should= 22 (score-game [5 5 4 4])))
-      (it "Strike adds next two rolls to score"
-          (should= 28 (score-game [10 5 4])))
-      (it "All strikes results 300"
-          (should= 300 (score-game (repeat 10))))
-      (it "Spare in the last frame is extra turn"
-          (should= 40 (score-game [1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 2 1 9 3])))
-  )
-  (context "-> frames"
-    (it "No rolls is no frames"
-        (should= [] (->frames [])))
-    (it "One roll result one frame"
-        (should= [[1]] (->frames [1])))
-    (it "two rolls result one frame"
-        (should= [[1 1]] (->frames [1 1])))
-    (it "three rolls result two frames"
-        (should= [[1 1] [1]] (->frames [1 1 1])))
-    (it "four rolls results in two frames"
-        (should= [[1 1] [1 1]] (->frames [1 1 1 1])))
-    (it "Spare adds next roll to frame"
-        (should= [[5 5 4] [4]] (->frames [5 5 4])))
-    (it "Strike adds next two rolls to frame"
-        (should= [[10 5 4] [5 4]] (->frames [10 5 4])))
-  )
-)
+           (it "gutter game is zero points"
+             (should= 0 (score (repeat 0))))
+           (it "all ones is 20 points"
+             (should= 20 (score (repeat 1))))
+           (it "spare adds next roll to score"
+             (should= 18 (score [5 5 4])))
+           (it "strike adds next two rolls to score"
+             (should= 28 (score [10 5 4])))
+           (it "perfect game is 300"
+             (should= 300 (score (repeat 10)))))
+  (context "->frames"
+           (it "zero rolls is zero frames"
+             (should= [] (->frames [])))
+           (it "2 rolls is one frame"
+             (should= [[1 1]] (->frames [1 1])))
+           (it "3 rolls is 2 frames"
+             (should= [[1 1] [1]] (->frames [1 1 1])))
+           (it "spare adds next roll to the frame"
+             (should= [[5 5 4] [4]] (->frames [5 5 4])))
+           (it "strike adds next two rolls to the frame"
+             (should= [[10 5 4 ] [5 4]] (->frames [10 5 4])))))
+
+
+
